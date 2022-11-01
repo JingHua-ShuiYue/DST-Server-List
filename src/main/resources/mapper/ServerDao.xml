@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace名称空间： 需要你配置该文件对应的是哪个接口，需要编写接口的完整类-->
+<mapper namespace="com.example.serverlist.dao.ServerDao">
+
+    <select id="selectServices" resultType="com.example.serverlist.pojo.ServerInfo">
+        select * from server_info
+    </select>
+</mapper>

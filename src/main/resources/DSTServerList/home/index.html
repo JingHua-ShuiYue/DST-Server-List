@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>饥荒服务器列表</title>
+    <link rel="stylesheet" href="../css/layui.css">
+    <script src="../js/layui.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body style="background-color:#009688">
+
+<div class="layui-container">
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-xs2 layui-col-sm6 layui-col-md2">
+        </div>
+        <div class="layui-col-xs8 layui-col-sm6 layui-col-md8">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th colspan="2"><h1 style="font-family: 'Microsoft JhengHei UI';text-align: center">
+                        饥荒服务器列表</h1></th>
+                </tr>
+                <tr>
+                    <th>房间名称</th>
+                    <th>房间后台</th>
+                </tr>
+                </thead>
+                <tbody id="table-body-info">
+                </tbody>
+            </table>
+        </div>
+        <div class="layui-col-xs2 layui-col-sm12 layui-col-md2">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            async: 'true',
+            url: '/getInfo',
+            type: 'GET',
+            data: '',
+            /*dataType: 'application/json',*/
+            contentType: 'application/json',
+            success: function (result) {
+                console.log(result);
+                $.each(result.map.serverInfos, function (index, element) {
+                    $("#table-body-info").append("<tr>" +
+                        "<td>" + element.server_name + "</td>" +
+                        "<td><a href='http://" + element.server_uri + ":8080'>点击进入后台</a></td>" +
+                        "</tr>")
+                })
+            },
+            error: function (result) {
+                console.log(result);
+            }
+        });
+    })
+</script>
+
+</body>
+</html>
